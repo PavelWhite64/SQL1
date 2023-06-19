@@ -2,7 +2,8 @@ package page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import data.Datahelper;
+import data.DataHelper;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.page;
@@ -26,22 +27,18 @@ public class LoginPage {
         loginField.shouldBe(Condition.visible);
     }
 
-    public VerificationPage validLogin(Datahelper.AuthInfo info) {
+    public VerificationPage validLogin(DataHelper.AuthInfo info) {
         loginField.setValue(info.getLogin());
         passwordField.setValue(info.getPassword());
         actionButton.click();
         return page(VerificationPage.class);
     }
 
-    public LoginPage notValidPass(Datahelper.AuthInfo info) {
+    public LoginPage notValidPass(DataHelper.AuthInfo info) {
+        loginField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         loginField.setValue(info.getLogin());
-        passwordField.setValue(Datahelper.genRandomUser().getPassword());
-        actionButton.click();
-        passwordField.setValue(Datahelper.genRandomUser().getPassword());
-        actionButton.click();
-        passwordField.setValue(Datahelper.genRandomUser().getPassword());
-        actionButton.click();
-        passwordField.setValue(Datahelper.genRandomUser().getPassword());
+        passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        passwordField.setValue(DataHelper.genRandomUser().getPassword());
         actionButton.click();
         return this;
     }

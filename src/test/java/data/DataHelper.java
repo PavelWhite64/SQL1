@@ -5,10 +5,10 @@ import lombok.Value;
 
 import java.util.Locale;
 
-public class Datahelper {
+public class DataHelper {
     private static Faker faker = new Faker(new Locale("en"));
 
-    private Datahelper() {
+    private DataHelper() {
     }
 
     @Value

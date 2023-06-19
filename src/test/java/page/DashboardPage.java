@@ -10,7 +10,7 @@ public class DashboardPage {
     @FindBy(css = "[data-test-id=dashboard]")
     private SelenideElement heading;
 
-    public DashboardPage db() {
+    public DashboardPage headingVisible() {
         heading.shouldBe(visible);
         return this;
     }

@@ -4,6 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class VerificationPage {
     @FindBy(css = "[data-test-id=code] input")
     private SelenideElement verifyCode;
@@ -27,6 +29,6 @@ public class VerificationPage {
 
     public DashboardPage validV(String verificationCode) {
         verify(verificationCode);
-        return new DashboardPage();
+        return page(DashboardPage.class);
     }
 }
